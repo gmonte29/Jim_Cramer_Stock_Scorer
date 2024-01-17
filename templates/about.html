@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/about.css" type="text/css" rel="stylesheet">
+    <title>About</title>
+</head>
+<body>
+    <div class="top-right-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact Us</a>
+    </div>
+
+    <h1>About</h1>
+
+    <h2>What is this tool?</h2>
+    <p>
+        In Jim Cramer's Book <a href="https://www.amazon.com/Jim-Cramers-Real-Money-Investing/dp/0743224906" target="_blank"><em>Real Money</em></a>, he discusses some high level trading strategies and factors to look at. Included is the relationship between Growth Rate and Price/Earnings of a company - if a company's growth rate is high but it's P/E is low, this is a sign of a potential buy grade stock while the opposite would be true of a sell grade stock. In general, a high price to earnings and low growth rate could mean the market is over valuing the company. 
+    </p>
+    <p>
+        This tool attempts to implement this strategy by calculating the top and bottom 8 stocks of a given revenue range and sector.
+    </p>
+
+    <br>
+
+    <h2>What is the calculation?</h2>
+    <p id="tool?">
+        The tool takes all the stocks within the given input parameters and applies the following calculation to return a buy/sell score.
+    </p>
+    <p id="algorithm">
+        (stock GR / group GR - 1)/2 + -(stock PE / Group PE - 1)/2
+    </p>
+
+    <p id="tool?2">
+        Where "group" is the average value for all the companies that are filtered based on the user input.
+    </p>
+
+    <br>
+
+    <h2>What data is used for this calculation?</h2>
+    <p id="data">
+        The stock ticker information is brought in from <a href="https://www.alphavantage.co/documentation/" target="_blank">AlphaVantage</a> and the stock financial information is brought in from <a href="https://pypi.org/project/yfinance/" target="_blank">yFinance</a>.
+    </p>
+
+</body>
+</html>

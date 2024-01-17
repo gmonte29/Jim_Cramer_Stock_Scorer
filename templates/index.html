@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Buy/Sell Rating</title>
+    <link href="{{ url_for('static', filename='style.css') }}" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="top-right-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact Us</a>
+    </div>
+
+    <h1>Stock Buy/Sell Rating</h1>
+
+    <form action="/submit" method="Post">
+        <p id="instructions"> Instructions:<br> Enter minimum and maximum revenue, and sector, to produce buy/sell suggested stock tickers that meet the entered criteria. Can leave any field blank to exclude related constraint.</p>
+        <label for="Minimum Revenue">Minimum Revenue:</label>
+        <input type="number" id="MinimumRevenue" name="Minimum Revenue" value="{{ request.form['Minimum Revenue'] }}">
+
+        <label for="Maximum Revenue">Maximum Revenue:</label>
+        <input type="number" id="MaximumRevenue" name="Maximum Revenue" value="{{ request.form['Maximum Revenue'] }}">
+        
+        <label for="Sector">Sector:</label>
+        <select id="Sector" name="Sector">
+            {% for sector in Sectors %}
+            <option value="{{ sector }}" {% if request.form['Sector'] == sector %}selected{% endif %}>{{ sector }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Growth Rate of Group: {{ averageGR }}</h2>
+
+    <h2>Price/Earnings Ratio of Group: {{averagePE }}</h2>
+    <br>
+
+    <div id="table1">
+        <h3>Buy Score</h3>
+        {% if top8 is defined %}
+            <p>{{ top8.to_html(index=False, ) | safe}}</p>
+        {% else %}
+            <p>No data</p>
+        {% endif %}
+    </div>
+
+    <div id="table2">
+        <h3>Sell Score</h3>
+        {% if bottom8 is defined %}
+            <p>{{ bottom8.to_html(index=False) | safe}}</p>
+        {% else %}
+            <p>No data</p>
+        {% endif %}
+    </div>
+
+    <br>
+
+    <p id="Note"> Stock data last updated: {{stock_date}}</p>
+
+    <p id="disclaimer"> DISCLAIMER: This site should not be relied upon for making investment decisions. It is a tool to supplement research. Creator does not take responsibility for outcomes from relying upon this site.</p>
+
+    <!-- Add other HTML elements using the passed variables as needed -->
+</body>
+</html>
