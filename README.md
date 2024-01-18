@@ -1,5 +1,5 @@
 # Stock-Buy-Sell-Predictor
-Program that receives a minimum and maximum revenue, and a sector and returns buy/sell suggestion for stocks that fit the parameters 
+Program that receives a minimum and maximum revenue, and a sector, and returns buy/sell suggestion for stocks that fit the parameters 
 
 Stock Score Formula - (stock PE / group PE - 1) * -1 / 2 + (stock GR / group GR - 1) / 2
 
